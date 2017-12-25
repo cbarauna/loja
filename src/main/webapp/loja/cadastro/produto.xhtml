@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+
+</h:head>
+
+
+
+<ui:composition template="/templates/formPrincipal.xhtml">
+	<ui:define name="content">
+				<h:form id="form-cadastro">
+				
+			              <p:messages id="messages" />
+
+
+					<h:panelGrid id="panelGrid-campos-form" columns="2"
+						cellpadding="10">
+
+						<p:outputLabel value="Nome do Produto" for="inputText-nomeProduto" />
+						<p:inputText id="inputText-nomeProduto" style="width:300px"
+							maxlength="70" value="#{adminProdutoBean.produto.nomeProduto}"
+							required="true"
+							requiredMessage="O nome do produto é de preenchimento obrigatório" />
+							
+						<p:outputLabel value="Codigo do Produto" for="inputText-sku" />
+						<p:inputText id="inputText-sku" style="width:300px"
+							maxlength="70" value="#{adminProdutoBean.produto.sku}"
+							required="true"
+							requiredMessage="O Código do Produto é de preenchimento obrigatório" />
+						
+						<p:outputLabel for="dataVencimento" value="Data de Vencimento" />
+						<p:calendar id="dataVencimento" value="#{adminProdutoBean.produto.dataValidade}"
+						required="true" requiredMessage="A Data de Vencimento é de preenchimento obrigatório"/>
+
+						<p:outputLabel value="Quantidade" for="inputText-quantidade" />
+						<p:inputText id="inputText-quantidade" style="width:300px"
+							maxlength="80" value="#{adminProdutoBean.produto.quantidade}"
+							required="true"
+							requiredMessage="A Quantidade é de preenchimento obrigatório" />
+
+
+						<p:commandButton value="Salvar" id="commandButton-salvar"
+							icon="ui-icon-gear"
+							actionListener="#{adminProdutoBean.manter()}"
+							update="panelGrid-campos-form" />
+
+
+					</h:panelGrid>
+					
+					<p:dataTable id="dataTable-registros"
+						 var="produto" 
+						 value="#{adminProdutoBean.produtos}" 
+						 rows="5"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         style="width:98%;">
+                         
+                         <p:column headerText="Código" style="text-align:center">
+            				<h:outputText value="#{produto.sku}" />
+        				 </p:column>
+ 
+        				 <p:column headerText="Nome">
+            				<h:outputText value="#{produto.nomeProduto}" />
+        				 </p:column>
+ 
+        				 <p:column headerText="Data Validade" style="text-align:center">
+            				<h:outputText   value="#{produto.dataValidade}">
+            				<f:convertDateTime pattern="dd/MM/yyy"/>
+            				</h:outputText>
+        				 </p:column>
+ 
+        				 <p:column headerText="Quantidade" style="text-align:center">
+            				<h:outputText value="#{produto.quantidade}">            					
+ 
+            				</h:outputText>
+        				 </p:column>
+ 
+ 
+        				 <p:column headerText="" style="width:25px;">
+ 
+        				 </p:column>
+ 
+        				 <p:column headerText="" style="width:25px;">
+ 
+        				 </p:column>
+ 
+			</p:dataTable>
+ 
+
+				</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
