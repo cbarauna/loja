@@ -3,22 +3,22 @@
 }
 
 html, body {
-	margin: 0;
-	padding: 0;
+	margin: 20;
+	padding: 20;
 	height: 100%;
 }
 
 #content {
-	min-height: 93%;
+	min-height: 83%;
 	position: relative;
 }
 
 #header {
-	padding: 0px;
+	padding: 10px;
 }
 
 #body {
-	padding: 10px;
+	padding: 20px;
 	padding-bottom: 60px;
 }
 
@@ -26,6 +26,6 @@ html, body {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 20px;
+	height: 0px;
 	background: #BDBDBD;
 }

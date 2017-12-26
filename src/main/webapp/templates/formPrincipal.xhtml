@@ -1,26 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <body>
 
 	<h:head>
-	 <h:outputStylesheet library="css"  name="style.css"/>
-	
-
+		<h:outputStylesheet library="css" name="style.css" />
 
 	</h:head>
-	
+
 	<div id="header">
 		<ui:include src="header.xhtml" />
 	</div>
-	<div id="content" style="margin-top: 5%;">
-		<ui:insert name="content">
-		</ui:insert>
-	</div>
+	<p:layoutUnit position="center">
+		<div id="content" style="margin-top: 5%;">
+			<ui:insert name="content">
+			</ui:insert>
+		</div>
+	</p:layoutUnit>
 	<div id="footer">
 		<ui:include src="footer.xhtml" />
-	</div>	
+	</div>
 </body>
 
 </html>
