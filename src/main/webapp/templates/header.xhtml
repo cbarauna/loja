@@ -6,16 +6,15 @@
 
 <h:form>
 	<p:menubar>
-		<p:menuitem value="Home" icon="ui-icon-home" />
+		<p:menuitem value="Home" icon="ui-icon-home" url="/index.xhtml" />
 		<p:submenu label="Cadastro" icon="fa-save">
 			<p:menuitem value="Cliente" icon="fa-plus"
-				url="loja/cadastro/cliente.xhtml" />
-				<p:menuitem value="Produto" icon="fa-plus"
-				url="webapp/loja/cadastro/produto.xhtml" />
+				url="/aplicacao/cadastro/cliente.xhtml" />
+			<p:menuitem value="Produto" icon="fa-plus"
+				url="/aplicacao/cadastro/produto.xhtml" />
 		</p:submenu>
-		<p:menuitem value="Consulta" icon="ui-icon-document" />
-		<p:menuitem value="Consulta por Carousel" icon="ui-icon-document" />
-		<p:menuitem value="Gráfico tipo Pessoa" icon="ui-icon-document" />
+		<p:menuitem value="Venda" icon="ui-icon-cart"
+			url="/aplicacao/venda/venda.xhtml" />
 	</p:menubar>
 
 </h:form>

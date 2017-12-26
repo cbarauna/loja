@@ -1,24 +1,32 @@
 .ui-widget {
-	font-size: 12px !important;
+	font-size: 15px !important;
 }
 
 html, body {
-	margin: 20;
-	padding: 20;
+	margin: 5;
+	padding: 0px;
 	height: 100%;
 }
 
-#content {
-	min-height: 83%;
+#all{
+	min-height: 100;
 	position: relative;
 }
 
+#content {
+	margin-left:10px;
+	margin-right:10px;
+	min-height: 83%;
+	position: relative;
+	margin-bottom: 30px;
+}
+
 #header {
-	padding: 10px;
+	padding: 0px;
 }
 
 #body {
-	padding: 20px;
+	padding: 0px;
 	padding-bottom: 60px;
 }
 
@@ -26,6 +34,5 @@ html, body {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 0px;
-	background: #BDBDBD;
+	height: 30px;
 }

@@ -3,24 +3,25 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
 <body>
-
-	<h:head>
-		<h:outputStylesheet library="css" name="style.css" />
-
-	</h:head>
-
-	<div id="header">
-		<ui:include src="header.xhtml" />
-	</div>
-	<p:layoutUnit position="center">
-		<div id="content" style="margin-top: 5%;">
-			<ui:insert name="content">
-			</ui:insert>
+	<div id="all">
+		<div id="header">
+			<ui:include src="header.xhtml" />
 		</div>
-	</p:layoutUnit>
-	<div id="footer">
-		<ui:include src="footer.xhtml" />
+		<p:layoutUnit position="center">
+			<div id="content" style="margin-top: 5%;">
+				<ui:insert name="content">
+				</ui:insert>
+			</div>
+		</p:layoutUnit>
+		<div class="ui-g-12">
+			<div id="footer">
+				<ui:include src="footer.xhtml" />
+			</div>
+		</div>
 	</div>
 </body>
 
