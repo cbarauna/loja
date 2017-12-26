@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -22,20 +24,29 @@ public class AdminClientesBean {
 	@Produces
 	private List<Cliente> clientes;
 
-	@Transactional
+	
 	public void manter() {
-		dao.manter(cliente);
+		try {
+			dao.manter(cliente);
+			init();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Cadastro Realizado", "Produto Cadastrado com Sucesso!"));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	/**
-	 * Remover o produto	
+	 * Remover o produto
 	 */
 	@Transactional
 	public void remover(Cliente cliente) {
 		dao.remove(dao.getId(cliente.getId()));
+		listar();
 	}
+
 	public void listar() {
-		System.out.println();
+		this.clientes = dao.listar();
 	}
 
 	public Cliente getCliente() {
@@ -48,7 +59,9 @@ public class AdminClientesBean {
 
 	@PostConstruct
 	public void init() {
-		this.clientes = dao.listar();
+
+		listar();
+		setCliente(new Cliente());
 	}
 
 	public List<Cliente> getClientes() {
@@ -57,6 +70,7 @@ public class AdminClientesBean {
 
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
+
 	}
 
 }
