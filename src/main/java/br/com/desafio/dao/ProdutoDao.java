@@ -5,14 +5,18 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import br.com.desafio.models.Produto;
 
+@Transactional(value = TxType.REQUIRED)
 public class ProdutoDao {
 	@PersistenceContext
 	private EntityManager manager;
 
 	public void manter(Produto produto) {
+		
 		manager.persist(produto);
 	}
 
@@ -30,6 +34,10 @@ public class ProdutoDao {
 		manager.remove(produto);
 	}
 
+	public void update(Produto produto) throws Exception {
+		manager.merge(produto);
+	}
+
 	public List<Produto> listar() {
 		return manager.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
 	}
@@ -40,6 +48,6 @@ public class ProdutoDao {
 			return Collections.EMPTY_LIST;
 		}
 		return manager.createQuery("From Produto p Where Lower(p.nomeProduto) like lower(:descricao)")
-				.setParameter("descricao", "%" + descricao+"%").getResultList();
+				.setParameter("descricao", "%" + descricao + "%").getResultList();
 	}
 }

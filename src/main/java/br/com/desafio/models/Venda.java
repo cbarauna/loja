@@ -1,5 +1,6 @@
 package br.com.desafio.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,9 @@ public class Venda {
 	private Float valorTotal;
 	
 	
-	
+	public  Venda() {
+		this.produtos = new ArrayList<>();
+	}
 
 	public Integer getId() {
 		return id;

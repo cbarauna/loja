@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nomeProduto;
 	private String sku;
 	@Temporal(TemporalType.DATE)
@@ -30,7 +30,7 @@ public class Produto {
 
 	}
 
-	public Produto(int id, String nomeProduto, String sku, Date dataValidade, int quantidade) {
+	public Produto(Integer id, String nomeProduto, String sku, Date dataValidade, int quantidade) {
 		this.id = id;
 		this.nomeProduto = nomeProduto;
 		this.sku = sku;
@@ -39,11 +39,11 @@ public class Produto {
 
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -77,12 +77,6 @@ public class Produto {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	@Override
-	public String toString() {
-		return "Produto [id=" + id + ", nomeProduto=" + nomeProduto + ", sku=" + sku + ", dataValidade=" + dataValidade
-				+ ", valor=" + valor + "]";
 	}
 
 	public BigDecimal getValor() {

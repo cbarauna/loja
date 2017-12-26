@@ -15,9 +15,7 @@
 	<ui:define name="content">
 		<h:form id="form-cadastro">
 
-			<p:messages />
-
-
+			<p:growl id="message" showDetail="false" />
 			<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
 
 				<p:outputLabel value="Nome do Produto" for="inputText-nomeProduto" />
@@ -102,16 +100,7 @@
 						immediate="true" update="dataTable-registros" />
 
 				</p:column>
-
 			</p:dataTable>
-
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<p:commandButton value="Yes" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="No" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			</p:confirmDialog>
-
 		</h:form>
 
 	</ui:define>
