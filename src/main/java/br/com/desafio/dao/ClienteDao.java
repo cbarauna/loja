@@ -1,10 +1,14 @@
 package br.com.desafio.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import br.com.desafio.models.Cliente;
 
+@Transactional
 public class ClienteDao {
 
 	@PersistenceContext
@@ -14,7 +18,15 @@ public class ClienteDao {
 		manager.persist(cliente);
 	}
 	
-	public void getId(Cliente cliente) {
+	public Cliente getId(int id) {
+		return manager.find(Cliente.class, id);
+
+	}
 	
+	public void remove(Cliente cliente) {
+		manager.remove(cliente);
+	}
+	public List<Cliente> listar() {
+		return manager.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
 	}
 }

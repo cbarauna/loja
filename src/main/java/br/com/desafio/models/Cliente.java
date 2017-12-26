@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
+@Entity	
 public class Cliente {
 
 	@Id
@@ -21,7 +21,7 @@ public class Cliente {
 	private String eMail;
 	private char sexo;
 	@Temporal(TemporalType.DATE)
-	private Date dataCadastro;
+	private Date dataNascimento;
 
 	public Integer getId() {
 		return id;
@@ -55,12 +55,12 @@ public class Cliente {
 		this.eMail = eMail;
 	}
 
-	public Date getDataCadastro() {
-		return dataCadastro;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Integer getCpf() {
@@ -82,7 +82,7 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", eMail=" + eMail
-				+ ", sexo=" + sexo + ", dataCadastro=" + dataCadastro + "]";
+				+ ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + "]";
 	}
 
 

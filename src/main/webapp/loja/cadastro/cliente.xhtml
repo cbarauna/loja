@@ -8,77 +8,106 @@
 </h:head>
 
 <ui:composition template="/templates/formPrincipal.xhtml">
-
-
 	<ui:define name="content">
+		<h:form id="form-cadastro">
+			<p:growl id="message" showDetail="true" />
 
-		<p:tabView style="width:600px;height:370px;margin:auto;">
-			<p:tab title="Cadastro de Cliente">
+			<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
 
-				<h:form id="form-cadastro">
+				<p:outputLabel value="Nome" for="inputText-nome" />
+				<p:inputText id="inputText-nome" style="width:300px" maxlength="70"
+					value="#{adminClientesBean.cliente.nome}" required="true"
+					requiredMessage="O nome é de preenchimento obrigatório" />
 
-					<h:panelGrid id="panelGrid-campos-form" columns="2"
-						cellpadding="10">
+				<p:outputLabel value="Cpf" for="inputText-cpf" />
+				<p:inputText id="inputText-cpf" style="width:300px" maxlength="70"
+					value="#{adminClientesBean.cliente.cpf}" required="true"
+					requiredMessage="O Cpf é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Nome" for="inputText-nome" />
-						<p:inputText id="inputText-nome" style="width:300px"
-							maxlength="70" value="#{adminClientesBean.cliente.nome}"
-							required="true"
-							requiredMessage="O nome é de preenchimento obrigatório" />
-							
-						<p:outputLabel value="Cpf" for="inputText-cpf" />
-						<p:inputText id="inputText-cpf" style="width:300px"
-							maxlength="70" value="#{adminClientesBean.cliente.nome}"
-							required="true"
-							requiredMessage="O Cpf é de preenchimento obrigatório" />
+				<p:outputLabel value="Telefone" for="inputText-tel" />
+				<p:inputText id="inputText-tel" style="width:300px" maxlength="70"
+					value="#{adminClientesBean.cliente.telefone}" required="true"
+					requiredMessage="O Telefone é de preenchimento obrigatório" />
 
-						<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
-						<p:selectOneRadio id="selectOneRadio-sexo"
-							value="#{adminClientesBean.cliente.sexo}" required="true"
-							requiredMessage="O sexo é de preenchimento obrigatório">
+				<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
+				<p:selectOneRadio id="selectOneRadio-sexo"
+					value="#{adminClientesBean.cliente.sexo}" required="true"
+					requiredMessage="O sexo é de preenchimento obrigatório">
 
-							<f:selectItem itemLabel="Masculino" itemValue="M" />
-							<f:selectItem itemLabel="Feminino" itemValue="F" />
-						</p:selectOneRadio>
-						
-						<p:outputLabel for="data-nascimento" value="Data Nascimento" />
-						<p:calendar id="data-nascimento" value="#{adminClientesBean.cliente.dataCadastro}"
-						required="true" requiredMessage="A Data de Nascimento é de preenchimento obrigatório"/>
+					<f:selectItem itemLabel="Masculino" itemValue="M" />
+					<f:selectItem itemLabel="Feminino" itemValue="F" />
+				</p:selectOneRadio>
 
-						<p:outputLabel value="E-mail" for="inputText-email" />
-						<p:inputText id="inputText-email" style="width:300px"
-							maxlength="80" value="#{adminClientesBean.cliente.eMail}"
-							required="true"
-							requiredMessage="O email é de preenchimento obrigatório" />
+				<p:outputLabel for="data-nascimento" value="Data Nascimento" />
+				<p:calendar id="data-nascimento"
+					value="#{adminClientesBean.cliente.dataNascimento}" required="true"
+					requiredMessage="A Data de Nascimento é de preenchimento obrigatório" />
 
-
-						<p:commandButton value="Salvar" id="commandButton-salvar"
-							icon="ui-icon-gear"
-							actionListener="#{adminClientesBean.manter()}"
-							update="panelGrid-campos-form" />
+				<p:outputLabel value="E-mail" for="inputText-email" />
+				<p:inputText id="inputText-email" style="width:300px" maxlength="80"
+					value="#{adminClientesBean.cliente.eMail}" required="true"
+					requiredMessage="O email é de preenchimento obrigatório" />
 
 
-					</h:panelGrid>
+				<p:commandButton value="Salvar" id="commandButton-salvar"
+					icon="ui-icon-gear" actionListener="#{adminClientesBean.manter()}"
+					update="form-cadastro, dataTable-Clientes" />
+				<p:commandButton value="Limpar" immediate="true"
+					action="#{adminProdutoBean.limpar}" update="form-cadastro"
+					icon=" ui-icon-cancel" process="@this">
+				</p:commandButton>
+			</h:panelGrid>
+		</h:form>
 
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="warn" />
-					<p:messages autoUpdate="true" closable="true" severity="error" />
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="info" />
+		<p:dataTable id="dataTable-Clientes" var="cliente"
+			emptyMessage="Nenhum Registro Encontrado"
+			value="#{adminClientesBean.clientes}" rows="5" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15" style="width:98%;">
 
-				</h:form>
+			<p:column headerText="Nome" style="text-align:center">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
 
-			</p:tab>
+			<p:column headerText="Cpf">
+				<h:outputText value="#{cliente.cpf}" />
+			</p:column>
 
-		</p:tabView>
+			<p:column headerText="Telefone" style="text-align:center">
+				<h:outputText value="#{cliente.cpf}">
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="E-mail" style="text-align:center">
+				<h:outputText value="#{cliente.eMail}">
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Sexo" style="text-align:center">
+				<h:outputText value="#{cliente.sexo}">
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Data Nascimento" style="text-align:center">
+				<h:outputText value="#{cliente.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyy" />
+				</h:outputText>
+			</p:column>
 
 
+			<p:column headerText="" style="width:25px;">
 
+			</p:column>
 
+			<p:column headerText="" style="width:25px;">
+
+				<p:commandButton icon="ui-icon-trash" title="Excluir Produto"
+					action="#{adminClientesBean.remover(cliente)}" ajax="true"
+					process="dataTable-Clientes" immediate="true"
+					update="dataTable-Clientes" />
+
+			</p:column>
+		</p:dataTable>
 
 	</ui:define>
 
 </ui:composition>
-
-
 </html>

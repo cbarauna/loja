@@ -1,5 +1,6 @@
 package br.com.desafio.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,13 +16,30 @@ public class ProdutoDao {
 		manager.persist(produto);
 	}
 
-	public void getId(Produto produto) {
+	/**
+	 * 
+	 * @param id
+	 * @return Produto de acordor com Id informado
+	 */
+	public Produto getId(int id) {
+		return manager.find(Produto.class, id);
 
 	}
-	
-	public List<Produto> listar(){
-		return manager.createQuery(
-				"SELECT p FROM Produto p", Produto.class)
-				.getResultList();
+
+	public void remove(Produto produto) {
+		manager.remove(produto);
+	}
+
+	public List<Produto> listar() {
+		return manager.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Produto> getDescricao(String descricao) {
+		if (descricao == null || "".equals(descricao)) {
+			return Collections.EMPTY_LIST;
+		}
+		return manager.createQuery("From Produto p Where Lower(p.nomeProduto) like lower(:descricao)")
+				.setParameter("descricao", "%" + descricao+"%").getResultList();
 	}
 }
