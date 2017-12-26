@@ -24,8 +24,9 @@ public class Venda {
 	@ManyToMany
 	private List<Produto> produtos;
 	private Float valorTotal;
-	private Float valorRecebido;
-	private Float valorTroco;
+	
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -67,27 +68,5 @@ public class Venda {
 		this.valorTotal = valorTotal;
 	}
 
-	public Float getValorRecebido() {
-		return valorRecebido;
-	}
-
-	public void setValorRecebido(Float valorRecebido) {
-		this.valorRecebido = valorRecebido;
-	}
-
-	public Float getValorTroco() {
-		return valorTroco;
-	}
-
-	public void setValorTroco(Float valorTroco) {
-		this.valorTroco = valorTroco;
-	}
-
-	@Override
-	public String toString() {
-		return "Venda [id=" + id + ", dataVenda=" + dataVenda + ", cliente=" + cliente + ", produtos=" + produtos
-				+ ", valorTotal=" + valorTotal + ", valorRecebido=" + valorRecebido + ", valorTroco=" + valorTroco
-				+ "]";
-	}
 
 }
